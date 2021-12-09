@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import categoryrouter from "./src/routes/categoryRoutes.js";
+import productrouter from "./src/routes/productRoutes.js";
 
 //setup express app
 const app = express();
@@ -22,6 +23,7 @@ async function main() {
 
   //calling our routes
   app.use(categoryrouter);
+  app.use(productrouter);
 
   //listening for requests
   app.listen(process.env.PORT, () => {

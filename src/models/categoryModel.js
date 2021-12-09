@@ -1,8 +1,11 @@
 import mongoose from "mongoose";
 
 //create a schema for category
-const categorySchema = mongoose.Schema({
-  name: String,
+const categorySchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
   description: String,
 });
 
