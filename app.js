@@ -1,12 +1,19 @@
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import categoryrouter from "./src/routes/categoryRoutes.js";
 import productrouter from "./src/routes/productRoutes.js";
+import userrouter from "./src/routes/userRoutes.js";
+import authrouter from "./src/routes/authRoutes.js";
 
 //setup express app
 const app = express();
 
+//setup cors
+app.use(cors());
+
+//setup env file
 dotenv.config("dotenv");
 
 async function main() {
@@ -24,6 +31,8 @@ async function main() {
   //calling our routes
   app.use(categoryrouter);
   app.use(productrouter);
+  app.use(userrouter);
+  app.use(authrouter);
 
   //listening for requests
   app.listen(process.env.PORT, () => {

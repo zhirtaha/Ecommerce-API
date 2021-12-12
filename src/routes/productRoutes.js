@@ -1,7 +1,6 @@
-import express from "express";
+import { Router } from "express";
 import Product from "../models/productModel.js";
-
-const productrouter = express.Router();
+const productrouter = Router();
 
 //get all products
 productrouter.get("/products", async (req, res) => {
