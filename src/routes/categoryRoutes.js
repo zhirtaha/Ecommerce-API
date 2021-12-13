@@ -1,6 +1,6 @@
 import { Router } from "express";
 import Category from "../models/categoryModel.js";
-
+import categoryValidate from "../validations/categoryValidate.js";
 const categoryrouter = Router();
 
 //get all categories
@@ -11,6 +11,11 @@ categoryrouter.get("/categories", async (req, res) => {
 
 //create a new category to DB
 categoryrouter.post("/categories", async (req, res) => {
+  try {
+    categoryValidate.validateAsync(req.body);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
   const category = new Category(req.body);
   await category.save();
   res.json(category);

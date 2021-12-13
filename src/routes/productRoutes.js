@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Product from "../models/productModel.js";
+import productValidate from "../validations/productValidate.js";
 const productrouter = Router();
 
 //get all products
@@ -16,8 +17,17 @@ productrouter.get("/products/:id", async (req, res) => {
 
 //create a new product to DB
 productrouter.post("/products", async (req, res) => {
+  try {
+    await productValidate.validateAsync(req.body);
+  } catch (error) {
+    return res.status(400).json(error.message);
+  }
   const product = new Product(req.body);
-  await product.save();
+  try {
+    await product.save();
+  } catch (error) {
+    res.status(500).json("unknown error happened");
+  }
   res.json(product);
 });
 
