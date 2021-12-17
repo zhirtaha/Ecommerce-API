@@ -20,6 +20,10 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    brand: {
+      type: String,
+      required: true,
+    },
     quantity: {
       type: Number,
       required: true,
@@ -28,6 +32,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    size: [String],
   },
   { timestamps: true }
 );

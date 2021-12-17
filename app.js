@@ -6,6 +6,7 @@ import categoryrouter from "./src/routes/categoryRoutes.js";
 import productrouter from "./src/routes/productRoutes.js";
 import userrouter from "./src/routes/userRoutes.js";
 import authrouter from "./src/routes/authRoutes.js";
+import brandrouter from "./src/routes/brandRoutes.js";
 
 //setup express app
 const app = express();
@@ -33,6 +34,7 @@ async function main() {
   app.use(productrouter);
   app.use(userrouter);
   app.use(authrouter);
+  app.use(brandrouter);
 
   //listening for requests
   app.listen(process.env.PORT, () => {
