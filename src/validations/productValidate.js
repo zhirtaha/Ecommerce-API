@@ -9,6 +9,7 @@ const productValidate = joi.object({
   quantity: joi.number().required(),
   image: joi.string().required(),
   size: joi.any(),
+  gender: joi.string().required(),
 });
 
 export default productValidate;

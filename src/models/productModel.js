@@ -33,6 +33,10 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     size: [String],
+    gender: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
