@@ -2,7 +2,7 @@ import { Router } from "express";
 import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 import userValidate from "../validations/userValidate.js";
-
+import bcrypt from "bcrypt";
 const authrouter = Router();
 
 //register
@@ -12,7 +12,16 @@ authrouter.post("/register", async (req, res) => {
   } catch (error) {
     return res.status(400).json(error.message);
   }
-  const user = new User(req.body);
+  //hash password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+  const user = new User({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    password: hashedPassword,
+  });
   await user.save();
   res.json(user);
 });

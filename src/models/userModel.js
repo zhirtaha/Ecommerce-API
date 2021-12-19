@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 //create a schema for user
 const userSchema = new mongoose.Schema({
   firstname: {
@@ -24,6 +23,7 @@ const userSchema = new mongoose.Schema({
     default: "user",
   },
 });
+
 
 //create a model
 const User = mongoose.model("user", userSchema);
